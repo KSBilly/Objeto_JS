@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Personagem(nome, cabelo, nivel){
+        this.nome=nome
+        this.cabelo=cabelo;
+        let _nivel=nivel;
+        this.getNivel=function(){
+            return _nivel
+        }
+        this.setNivel=function(a){
+            _nivel=a
+        }
+        this.info=function(){
+            return{
+                nome:this.nome,
+                cabelo:this.cabelo,
+                nivel:this.getNivel(),
+                camisa:this.camisa,
+                acessorios:this.acessorios
+            }
+        }
+    }
+
+    function Itens(nome,cabelo,nivel,camisa,acessorios){
+        Personagem.call(this,nome,cabelo,nivel)
+        this.camisa=camisa
+        this.acessorios=acessorios
+    }
+
+    function Guerreiro(nome,cabelo,nivel,camisa,acessorios){
+        Itens.call(this,nome, cabelo,nivel,camisa,acessorios)
+        this.habilidade=function(){
+            console.log(`Este personagem tem ${Guerreiro.length} ataques por turno.`)
+        }
+    }
+    function Mago(nome,cabelo,nivel,camisa,acessorios){
+        Itens.call(this,nome, cabelo,nivel,camisa,acessorios)
+        this.habilidade=function(){
+            console.log('Este personagem usa magias')
+        }
+    }
+    function Ladino(nome,cabelo,nivel,camisa,acessorios){
+        Itens.call(this,nome,cabelo,nivel,camisa,acessorios)
+        this.habilidade=function(){
+            console.log(`este personagem começa com um: ${this.acessorios}`)
+        }
+    }
+
+    const Heroi1 = new Guerreiro("Aragorn", "Preto", 35, "Couro", "Espada")
+    const Heroi2 = new Mago("Gandalf", "Cinza", 1000, "Tunica", "Anel")
+    const Heroi3 = new Ladino("Bilbo", "Castanho", 15, "Camisa verde", "cachimbo")
+
+
+    console.log(Heroi1.info(),Heroi1.habilidade())
+    console.log(Heroi2.info(),Heroi2.habilidade())
+    Heroi3.setNivel(25);
+    console.log(Heroi3.info(),Heroi3.habilidade())
+
+    </script>
+</body>
+</html>
